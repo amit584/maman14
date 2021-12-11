@@ -17,8 +17,8 @@ class HeapTest {
         h.printHeap();
     }
     void add(){
-        final int k = 3;
-        int[][] a = {{3,6,7},{1,2,4,10},{10,6,7,8}};
+        final int k = 5;
+        int[][] a = {{3,6,7},{1,2,4,10},{10,6,7,8},{9,6,7},{2,4,10}};
         Heap heap = new Heap(k);
         for ( int i = 0; i < k ; i++){
             heap.add(a[i][0]);
