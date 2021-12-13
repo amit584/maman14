@@ -13,8 +13,7 @@ class HeapTest {
         lists[1].insert(12);
         lists[1].insert(13);
 
-        lists[2] = new LinkedList(new LinkedList.Node(2));
-        lists[2].insert(6);
+        lists[2] = new LinkedList(new LinkedList.Node(6));
         lists[2].insert(7);
         lists[2].insert(11);
 
@@ -28,7 +27,10 @@ class HeapTest {
         }
         h.printHeap();
 
-        int root = h.removeRoot();
-        h.printHeap();
+        for(int i = 0 ; i < 11 ; i++){
+            int root = h.removeRoot();
+            System.out.println(root);
+        }
+
     }
 }

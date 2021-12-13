@@ -17,6 +17,10 @@ public class Heap {
      currSize initialized to array length.
      */
 
+    public LinkedList[] getHeap() {
+        return heap;
+    }
+
     // gets the parent of given index in heap
     public int parent(int i){
         return (i-1)/2 ;
@@ -43,9 +47,19 @@ public class Heap {
     }
     public int removeRoot(){
         LinkedList.Node root = heap[0].head;
-        heap[0].head = heap[0].head.next;
+        heap[0].head = root.next;
+        if(root.next == null){
+            reducesize();
+        }
         heapify(0);
         return root.data;
+    }
+
+    private void reducesize() {
+        currSize = currSize - 1;
+        heap[0] = heap[currSize];
+        heapify(0);
+
     }
 
     // Input: none
@@ -59,14 +73,6 @@ public class Heap {
             heap[parent(i)] = temp;
             i = parent(i);
         }
-    }
-    public LinkedList[] getHeap(){
-        LinkedList[] b = Arrays.copyOf(heap,heap.length);
-        System.out.println("in getHeap:");
-        for (LinkedList num : b) {
-            System.out.print(num);
-        }
-        return b;
     }
     // Input: i: an array index
     // Output: this.heap modified so i isn't violating the heap property
@@ -91,8 +97,8 @@ public class Heap {
         }
     }
     public void printHeap(){
-        for(LinkedList i: heap){
-            System.out.print(i.head.data + ",");
+        for( int i  = 0 ; i< currSize ; i++){
+            System.out.print(heap[i].head.data + ", ");
         }
         System.out.println();
     }
