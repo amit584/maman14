@@ -1,7 +1,7 @@
 public class Heap {
-    //Implementation of a heap data structure using an array
+    //Implementation of a heap data structure using an array of linked lists
     private LinkedList[] heap;
-    //current size of occupied cells in the heap
+    //current size of occupied places in the heap
     private int currSize;
 
      /* Constructor.
@@ -16,19 +16,22 @@ public class Heap {
     public int parent(int i){
         return (i-1)/2 ;
     }
-    // gets the left child of given index in heap
+    // Input: i: an array index
+    // Output: The index in the heap of the left child of i
+    // Running Time: O(1)
     public int left(int i){
         return i*2 +1;
     }
 
     // Input: i: an array index
-    // Output: The index in A of the right child of i
+    // Output: The index in the heap of the right child of i
     // Running Time: O(1)
     public int right(int i){
         return 2*i + 2;
     }
-
-    //adds new value to the heap and corrects the order to keep it minimum heap by calling heapIncreaseKey()
+    // Input: list: a list to add to the heap
+    // Output: adds list to the heap and corrects the order to keep it minimum heap by calling heapIncreaseKey()
+    // Running Time:
     public void add(LinkedList list){
         heap[currSize] = list;
         if(currSize < heap.length){
@@ -54,7 +57,7 @@ public class Heap {
     }
 
     // Input: none
-    // Output: this.heap modified so the last value  added isn't violating the heap property
+    // Output: heap modified so the last value added isn't violating the heap property
     // Running Time: O(log n) where n =heap-size[A]
     public void heapIncreaseKey(){
         int i = currSize - 1;
@@ -66,7 +69,7 @@ public class Heap {
         }
     }
     // Input: i: an array index
-    // Output: this.heap modified so i isn't violating the heap property
+    // Output: heap modified so i isn't violating the heap property
     // Running Time: O(log n) where n = heap-size[A] − i
     public void heapify(int i){
         int l = left(i);
@@ -87,6 +90,7 @@ public class Heap {
             heapify(min);
         }
     }
+
     public void printHeap(){
         for( int i  = 0 ; i< currSize ; i++){
             System.out.print(heap[i].head.data + ", ");
