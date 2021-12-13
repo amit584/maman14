@@ -1,4 +1,3 @@
-import java.util.Arrays;
 public class Heap {
     //Implementation of a heap data structure using an array
     private LinkedList[] heap;
@@ -11,14 +10,6 @@ public class Heap {
       */
      public Heap(int heapSize){
         heap= new LinkedList[heapSize];
-    }
-    /* Constructor.
-     building a heap from a given array.
-     currSize initialized to array length.
-     */
-
-    public LinkedList[] getHeap() {
-        return heap;
     }
 
     // gets the parent of given index in heap

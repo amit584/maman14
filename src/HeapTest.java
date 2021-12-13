@@ -1,6 +1,6 @@
 class HeapTest {
     public static void main(String[] args) {
-        int k = 4;    // total number of linked lists
+        int k = 4;
 
         // an array to store the head nodes of the linked lists
         LinkedList[] lists = new LinkedList[k];
