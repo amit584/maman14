@@ -1,7 +1,7 @@
 import java.util.Arrays;
 public class Heap {
     //Implementation of a heap data structure using an array
-    private int[] heap;
+    private LinkedList[] heap;
     //current size of occupied cells in the heap
     private int currSize;
 
@@ -9,17 +9,13 @@ public class Heap {
      building a heap with given length.
      currSize initialized to 0.
       */
-        public Heap(int heapSize){
-        this.heap= new int[heapSize];
+     public Heap(int heapSize){
+        heap= new LinkedList[heapSize];
     }
     /* Constructor.
      building a heap from a given array.
      currSize initialized to array length.
      */
-    public Heap(int[] a){
-        this.heap = a;
-        this.currSize = a.length;
-    }
 
     // gets the parent of given index in heap
     public int parent(int i){
@@ -36,31 +32,38 @@ public class Heap {
     public int right(int i){
         return 2*i + 2;
     }
+
     //adds new value to the heap and corrects the order to keep it minimum heap by calling heapIncreaseKey()
-    public void add(int num){
-        this.heap[currSize] = num;
-        if(this.currSize < this.heap.length){
-            this.currSize += 1;
+    public void add(LinkedList list){
+        heap[currSize] = list;
+        if(currSize < heap.length){
+            currSize += 1;
         }
         heapIncreaseKey();
+    }
+    public int removeRoot(){
+        LinkedList.Node root = heap[0].head;
+        heap[0].head = heap[0].head.next;
+        heapify(0);
+        return root.data;
     }
 
     // Input: none
     // Output: this.heap modified so the last value  added isn't violating the heap property
     // Running Time: O(log n) where n =heap-size[A]
     public void heapIncreaseKey(){
-        int i = this.currSize - 1;
-        while (i > 0 && this.heap[parent(i)] > this.heap[i]){
-            int temp = this.heap[i];
-            this.heap[i] = this.heap[parent(i)];
-            this.heap[parent(i)] = temp;
+        int i = currSize - 1;
+        while (i > 0 && heap[parent(i)].head.data > heap[i].head.data){
+            LinkedList temp = heap[i];
+            heap[i] = heap[parent(i)];
+            heap[parent(i)] = temp;
             i = parent(i);
         }
     }
-    public int[] getHeap(){
-        int[] b = Arrays.copyOf(this.heap,this.heap.length);
+    public LinkedList[] getHeap(){
+        LinkedList[] b = Arrays.copyOf(heap,heap.length);
         System.out.println("in getHeap:");
-        for (int num : b) {
+        for (LinkedList num : b) {
             System.out.print(num);
         }
         return b;
@@ -72,24 +75,24 @@ public class Heap {
         int l = left(i);
         int r = right(i);
         int min;
-        if (l<this.currSize && this.heap[l] < this.heap[i]){
+        if (l < currSize && heap[l].head.data < heap[i].head.data){
             min = l;
         } else {
             min = i;
         }
-        if(r<this.currSize && this.heap[r] < this.heap[min]){
+        if(r < currSize && heap[r].head.data < heap[min].head.data){
             min = r;
         }
         if (min != i){
-            int temp = this.heap[i];
-            this.heap[i] = this.heap[min];
-            this.heap[min] = temp;
-            this.heapify(min);
+            LinkedList temp = heap[i];
+            heap[i] = heap[min];
+            heap[min] = temp;
+            heapify(min);
         }
     }
     public void printHeap(){
-        for(int i: this.heap){
-            System.out.print(i+",");
+        for(LinkedList i: heap){
+            System.out.print(i.head.data + ",");
         }
         System.out.println();
     }
