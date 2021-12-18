@@ -1,3 +1,4 @@
+//Implementation of a LinkedList data structure using Nodes
 public class LinkedList {
     Node head; // head of list
 
@@ -7,17 +8,21 @@ public class LinkedList {
         int data;
         Node next;
 
+        // Constructor to create a new node - Next initialized to null
         Node(int d) {
             data = d;
             next = null;
         }
     }
 
+    // Constructor to create a new linked list with given node as head of list
     public LinkedList(Node n){
         head = n;
     }
 
-    // insert new node
+    // Input: data: data for new node
+    // Output: creat and insert the new node to the list
+    // Running Time: O(n) where n current size of list (O(1) for an empty list)
     public void insert(int data)
     {
         Node new_node = new Node(data);
@@ -33,7 +38,7 @@ public class LinkedList {
             while (last.next != null) {
                 last = last.next;
             }
-            // Insert the new_node at last node
+            // Insert the new node at last node
             last.next = new_node;
         }
     }
@@ -42,12 +47,9 @@ public class LinkedList {
     public static void printList(LinkedList list)
     {
         Node currNode = list.head;
-
-        System.out.print("List: ");
-
         // go through the LinkedList
         while (currNode != null) {
-            System.out.print(currNode.data + " -> ");
+            System.out.print(currNode.data + " ");
             currNode = currNode.next;
         }
     }
