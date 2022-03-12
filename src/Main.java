@@ -10,7 +10,7 @@ public class Main {
     - When the output node was the last node in its list, the size of the haep is reduced by 1 - reduceSize() */
     public static void main(String[] args) {
         //k - number of lists, is set at the beginning and can be changed here.
-        int k = 5;
+        int k = 3;
 
         // an array to store the head nodes of the linked lists
         LinkedList[] lists = new LinkedList[k];
