@@ -1,4 +1,4 @@
-# The Open University Of Israel, Data structures assignment-14.
+# an assignment for the Data structures course
 this program will merge linked lists from user input using a minimum heap.
 The input to the program will be k series of numbers, each of which is sorted in descending order.
 The output will be a single sorted series.
